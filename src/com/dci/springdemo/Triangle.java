@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * Created by ltornquist on 1/16/2015.
  */
-public class Triangle implements ApplicationContextAware, BeanNameAware {
+public class Triangle implements Shape, ApplicationContextAware, BeanNameAware {
 
 	private String name;
 	private Point pointA;
@@ -40,10 +40,12 @@ public class Triangle implements ApplicationContextAware, BeanNameAware {
 		this.pointB = pointB;
 	}
 
+	@Override
 	public void draw()
 	{
 		//for(Point p: points)
 		//	System.out.println("Point = (" + p.getX() + "," + p.getY() + ")");
+		System.out.println("Drawing Triangle!");
 		System.out.println("Point A = (" + getPointA().getX() + "," + getPointA().getY() + ")");
 		System.out.println("Point B = (" + getPointB().getX() + "," + getPointB().getY() + ")");
 		System.out.println("Point C = (" + getPointC().getX() + "," + getPointC().getY() + ")");

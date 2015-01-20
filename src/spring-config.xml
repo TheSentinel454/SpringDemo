@@ -9,16 +9,10 @@
               <property name="locations" value="pointsconfig.properties"/>
        </bean>
 
-       <bean id="parenttriangle" class="com.dci.springdemo.Triangle" abstract="true">
+       <bean id="triangle" class="com.dci.springdemo.Triangle">
               <property name="pointA" ref="pointA"/>
-       </bean>
-
-       <bean id="triangle1" class="com.dci.springdemo.Triangle" parent="parenttriangle">
               <property name="pointB" ref="pointB"/>
               <property name="pointC" ref="pointC"/>
-       </bean>
-       <bean id="triangle2" class="com.dci.springdemo.Triangle" parent="parenttriangle" scope="prototype">
-              <property name="pointB" ref="pointB"/>
        </bean>
 
        <bean id="pointA" class="com.dci.springdemo.Point">
@@ -32,5 +26,9 @@
        <bean id="pointC" class="com.dci.springdemo.Point">
               <property name="x" value="0"/>
               <property name="y" value="20"/>
+       </bean>
+
+       <bean id="circle" class="com.dci.springdemo.Circle">
+              <property name="center" ref="pointA"/>
        </bean>
 </beans>

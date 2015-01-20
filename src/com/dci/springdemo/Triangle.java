@@ -2,13 +2,15 @@ package com.dci.springdemo;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
  * Created by ltornquist on 1/16/2015.
  */
-public class Triangle implements ApplicationContextAware, BeanNameAware {
+public class Triangle implements ApplicationContextAware, BeanNameAware, InitializingBean, DisposableBean {
 
 	private String name;
 	private Point pointA;
@@ -58,5 +60,25 @@ public class Triangle implements ApplicationContextAware, BeanNameAware {
 	public void setBeanName(String name) {
 		System.out.println("BeanName: " + name);
 		this.name = name;
+	}
+
+	public void myInit()
+	{
+		System.out.println("MyInit!");
+	}
+
+	public void myDestroy()
+	{
+		System.out.println("MyDestroy!");
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("AfterPropertiesSet!");
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("Destroy!");
 	}
 }

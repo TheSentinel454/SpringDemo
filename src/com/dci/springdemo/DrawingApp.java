@@ -1,6 +1,7 @@
 package com.dci.springdemo;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -13,10 +14,9 @@ public class DrawingApp {
 		//Triangle triangle = new Triangle();
 		//BeanFactory factory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
 
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+		context.registerShutdownHook();
 		Triangle triangle = (Triangle) context.getBean("triangle1");
 		triangle.draw();
-		Triangle triangle2 = (Triangle) context.getBean("triangle2");
-		triangle2.draw();
 	}
 }

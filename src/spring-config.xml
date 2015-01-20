@@ -16,14 +16,15 @@
        <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
        <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
        -->
+
        <context:annotation-config />
-       <!--
+
        <bean id="triangle" class="com.dci.springdemo.Triangle">
               <property name="pointA" ref="pointA"/>
               <property name="pointB" ref="pointB"/>
               <property name="pointC" ref="pointC"/>
        </bean>
-       -->
+
        <bean id="pointA" class="com.dci.springdemo.Point">
               <qualifier value="circleRelated"/>
               <property name="x" value="0"/>

@@ -24,6 +24,8 @@
 
        <bean name="shapeService" class="com.dci.aspectdemo.service.ShapeService" autowire="byName"/>
 
+       <bean name="loggingAspect" class="com.dci.aspectdemo.aspect.LoggingAspect"/>
+
        <!--
        <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
               <property name="basenames">

@@ -1,6 +1,8 @@
 package com.dci.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -16,9 +18,10 @@ import java.util.Locale;
  * Created by ltornquist on 1/20/2015.
  */
 @Controller
-public class Circle implements Shape {
+public class Circle implements Shape, ApplicationEventPublisherAware {
 
 	private Point center;
+	private ApplicationEventPublisher publisher;
 
 	@Autowired
 	private MessageSource messageSource;
@@ -43,6 +46,7 @@ public class Circle implements Shape {
 	public void draw() {
 		System.out.println(messageSource.getMessage("circle.draw", null, "Not Found!", Locale.US));
 		System.out.println(messageSource.getMessage("circle.points", new Object[]{getCenter().getX(), getCenter().getY()}, "Not Found!", Locale.US));
+		publisher.publishEvent(new DrawEvent(this));
 	}
 
 	@PostConstruct
@@ -54,5 +58,11 @@ public class Circle implements Shape {
 	public void destroyCircle()
 	{
 		System.out.println("Destroy Circle!");
+	}
+
+	@Override
+	public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+		System.out.println("Publisher: " + publisher);
+		this.publisher = publisher;
 	}
 }

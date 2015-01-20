@@ -20,6 +20,14 @@
        <context:annotation-config/>
        <context:component-scan base-package="com.dci.springdemo"/>
 
+       <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+              <property name="basenames">
+                     <list>
+                            <value>mymessages</value>
+                     </list>
+              </property>
+       </bean>
+
        <bean id="triangle" class="com.dci.springdemo.Triangle">
               <property name="pointA" ref="pointA"/>
               <property name="pointB" ref="pointB"/>

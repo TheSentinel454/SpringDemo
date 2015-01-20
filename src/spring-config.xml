@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-        default-init-method="myInit" default-destroy-method="myDestroy">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean class="com.dci.springdemo.DisplayNameBeanPostProcessor" />
+       <!--<bean class="com.dci.springdemo.DisplayNameBeanPostProcessor" />-->
+       <bean class="com.dci.springdemo.MyBeanFactoryPP"/>
+       <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <property name="locations" value="pointsconfig.properties"/>
+       </bean>
 
        <bean id="parenttriangle" class="com.dci.springdemo.Triangle" abstract="true">
               <property name="pointA" ref="pointA"/>
@@ -19,8 +22,8 @@
        </bean>
 
        <bean id="pointA" class="com.dci.springdemo.Point">
-              <property name="x" value="0"/>
-              <property name="y" value="0"/>
+              <property name="x" value="${pointA.X}"/>
+              <property name="y" value="${pointA.Y}"/>
        </bean>
        <bean id="pointB" class="com.dci.springdemo.Point">
               <property name="x" value="-20"/>

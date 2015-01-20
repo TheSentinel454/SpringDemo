@@ -1,10 +1,7 @@
 package com.dci.aspectdemo.aspect;
 
-import com.dci.aspectdemo.model.Circle;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 
 /**
  * Created by ltornquist on 1/20/2015.
@@ -21,10 +18,18 @@ public class LoggingAspect {
 		//System.out.println("Advice run. Get Method called");
 	}
 
-	@Before("args(argument)")
-	public void stringArgumentMethods(String argument)
+	@AfterReturning(pointcut = "args(argument)", returning = "returnString")
+	public void stringArgumentMethods(String argument, Object returnString)
 	{
-		System.out.println("A method that takes String arguments has been called: " + argument);
+		System.out.println("A method that takes String arguments has been called.");
+		System.out.println("Value: " + argument + " Output: " + returnString);
+	}
+
+	@AfterThrowing(pointcut = "args(argument)", throwing = "ex")
+	public void exceptionAdvice(String argument, Exception ex)
+	{
+		System.out.println("An exception has been thrown.");
+		System.out.println("Arg: " + argument + " Exception: " + ex);
 	}
 
 	@Pointcut("execution(* get*())")

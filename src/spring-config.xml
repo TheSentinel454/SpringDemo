@@ -3,7 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean id="triangle" class="com.dci.springdemo.Triangle" autowire="byName" name="triangle-name">
+       <bean id="parenttriangle" class="com.dci.springdemo.Triangle" abstract="true">
+              <property name="pointA" ref="pointA"/>
+       </bean>
+
+       <bean id="triangle1" class="com.dci.springdemo.Triangle" parent="parenttriangle">
+              <property name="pointB" ref="pointB"/>
+              <property name="pointC" ref="pointC"/>
+       </bean>
+       <bean id="triangle2" class="com.dci.springdemo.Triangle" parent="parenttriangle">
+              <property name="pointB" ref="pointB"/>
        </bean>
 
        <bean id="pointA" class="com.dci.springdemo.Point">

@@ -2,24 +2,29 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-       <!--
-       <bean class="com.dci.springdemo.DisplayNameBeanPostProcessor" />
-       <bean class="com.dci.springdemo.MyBeanFactoryPP"/>
-       <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-              <property name="locations" value="pointsconfig.properties"/>
-       </bean>
-       <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
-       <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
-       -->
+       <aop:aspectj-autoproxy/>
 
        <context:annotation-config/>
        <context:component-scan base-package="com.dci.springdemo"/>
 
+       <bean name="triangle" class="com.dci.aspectdemo.model.Triangle">
+              <property name="name" value="Triangle name"/>
+       </bean>
+       <bean name="circle" class="com.dci.aspectdemo.model.Circle">
+              <property name="name" value="Circle name"/>
+       </bean>
+
+       <bean name="shapeService" class="com.dci.aspectdemo.service.ShapeService" autowire="byName"/>
+
+       <!--
        <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
               <property name="basenames">
                      <list>
@@ -48,7 +53,6 @@
               <property name="y" value="20"/>
        </bean>
 
-       <!--
        <bean id="circle" class="com.dci.springdemo.Circle">
               <property name="center" ref="pointA"/>
        </bean>

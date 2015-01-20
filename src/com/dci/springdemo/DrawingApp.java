@@ -15,9 +15,6 @@ public class DrawingApp {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 		Triangle triangle = (Triangle) context.getBean("triangle");
-		Triangle triangle2 = (Triangle) context.getBean("triangle");
-		if (triangle == triangle2)
-			System.out.println("Same triangles!");
 		triangle.draw();
 	}
 }

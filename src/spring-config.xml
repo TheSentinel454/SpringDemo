@@ -17,7 +17,8 @@
        <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
        -->
 
-       <context:annotation-config />
+       <context:annotation-config/>
+       <context:component-scan base-package="com.dci.springdemo"/>
 
        <bean id="triangle" class="com.dci.springdemo.Triangle">
               <property name="pointA" ref="pointA"/>
@@ -39,7 +40,9 @@
               <property name="y" value="20"/>
        </bean>
 
+       <!--
        <bean id="circle" class="com.dci.springdemo.Circle">
-              <!--<property name="center" ref="pointA"/>-->
+              <property name="center" ref="pointA"/>
        </bean>
+       -->
 </beans>

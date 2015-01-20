@@ -1,5 +1,7 @@
 package com.dci.springdemo;
 
+import org.springframework.beans.factory.annotation.Required;
+
 /**
  * Created by ltornquist on 1/20/2015.
  */
@@ -11,6 +13,7 @@ public class Circle implements Shape {
 		return center;
 	}
 
+	@Required
 	public void setCenter(Point center) {
 		this.center = center;
 	}

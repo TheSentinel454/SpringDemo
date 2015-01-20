@@ -3,11 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <!--<bean class="com.dci.springdemo.DisplayNameBeanPostProcessor" />-->
+       <!--
+       <bean class="com.dci.springdemo.DisplayNameBeanPostProcessor" />
        <bean class="com.dci.springdemo.MyBeanFactoryPP"/>
        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
               <property name="locations" value="pointsconfig.properties"/>
        </bean>
+       -->
+       <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
        <bean id="triangle" class="com.dci.springdemo.Triangle">
               <property name="pointA" ref="pointA"/>
@@ -16,8 +19,8 @@
        </bean>
 
        <bean id="pointA" class="com.dci.springdemo.Point">
-              <property name="x" value="${pointA.X}"/>
-              <property name="y" value="${pointA.Y}"/>
+              <property name="x" value="0"/>
+              <property name="y" value="0"/>
        </bean>
        <bean id="pointB" class="com.dci.springdemo.Point">
               <property name="x" value="-20"/>
@@ -29,6 +32,6 @@
        </bean>
 
        <bean id="circle" class="com.dci.springdemo.Circle">
-              <property name="center" ref="pointA"/>
+              <!--<property name="center" ref="pointA"/>-->
        </bean>
 </beans>

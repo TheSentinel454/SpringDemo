@@ -3,6 +3,26 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean id="triangle" class="com.dci.springdemo.Triangle">
+       <bean id="triangle" class="com.dci.springdemo.Triangle" name="triangle-name">
+              <property name="pointA" ref="zeroPoint"/>
+              <property name="pointB">
+                     <bean class="com.dci.springdemo.Point">
+                            <property name="x" value="0"/>
+                            <property name="y" value="20"/>
+                     </bean>
+              </property>
+              <property name="pointC">
+                     <bean class="com.dci.springdemo.Point">
+                            <property name="x" value="-20"/>
+                            <property name="y" value="0"/>
+                     </bean>
+              </property>
        </bean>
+
+       <bean id="zeroPoint" class="com.dci.springdemo.Point">
+              <property name="x" value="0"/>
+              <property name="y" value="0"/>
+       </bean>
+
+       <alias name="triangle" alias="triangle-alias"/>
 </beans>

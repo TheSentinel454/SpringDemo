@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
         default-init-method="myInit" default-destroy-method="myDestroy">
 
+       <bean class="com.dci.springdemo.DisplayNameBeanPostProcessor" />
+
        <bean id="parenttriangle" class="com.dci.springdemo.Triangle" abstract="true">
               <property name="pointA" ref="pointA"/>
        </bean>

@@ -3,10 +3,12 @@ package com.dci.jdbcdemo.dao;
 import com.dci.jdbcdemo.model.Circle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.List;
 
 /**
  * Created by ltornquist on 1/21/2015.
@@ -81,7 +83,19 @@ public class JdbcDaoImpl {
 	public Circle getCircleForId(int circleId)
 	{
 		String sql = "SELECT * FROM circle WHERE id = ?";
-		//jdbcTemplate.queryForObject(sql, , circleId)
-		return null;
+		return jdbcTemplate.queryForObject(sql, new CircleMapper(), circleId);
+	}
+
+	public List<Circle> getAllCircles()
+	{
+		String sql = "SELECT * FROM circle";
+		return jdbcTemplate.query(sql, new CircleMapper());
+	}
+
+	private static final class CircleMapper implements RowMapper<Circle> {
+		@Override
+		public Circle mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+			return (new Circle(resultSet.getInt("id"), resultSet.getString("name")));
+		}
 	}
 }

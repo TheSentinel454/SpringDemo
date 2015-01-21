@@ -15,7 +15,7 @@ import java.sql.*;
 public class JdbcDaoImpl {
 
 	private DataSource dataSource;
-	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	private JdbcTemplate jdbcTemplate;
 
 	public DataSource getDataSource() {
 		return dataSource;
@@ -69,7 +69,19 @@ public class JdbcDaoImpl {
 	public int getCircleCount()
 	{
 		String sql = "SELECT COUNT(*) FROM CIRCLE";
-		//jdbcTemplate.setDataSource(getDataSource());
-		return jdbcTemplate.queryForInt(sql);
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+
+	public String getCircleName(int circleId)
+	{
+		String sql = "SELECT name FROM circle WHERE id = ?";
+		return jdbcTemplate.queryForObject(sql, String.class, circleId);
+	}
+
+	public Circle getCircleForId(int circleId)
+	{
+		String sql = "SELECT * FROM circle WHERE id = ?";
+		//jdbcTemplate.queryForObject(sql, , circleId)
+		return null;
 	}
 }

@@ -16,6 +16,7 @@
               <property name="initialSize" value="2"/>
               <property name="maxTotal" value="5"/>
        </bean>
+
        <!--
        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
               <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>

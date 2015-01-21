@@ -32,47 +32,6 @@ public class JdbcDaoImpl {
 		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	/*
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
-	public Circle getCircle(int circleId)
-	{
-		Connection conn = null;
-
-		try {
-			conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM circle WHERE id = ?");
-			ps.setInt(1, circleId);
-
-			Circle circle = null;
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				circle = new Circle(circleId, rs.getString("name"));
-			}
-			rs.close();
-			ps.close();
-			return circle;
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			if (conn != null)
-			{
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-	}
-	*/
-
 	public int getCircleCount()
 	{
 		String sql = "SELECT COUNT(*) FROM CIRCLE";
@@ -96,14 +55,6 @@ public class JdbcDaoImpl {
 		String sql = "SELECT * FROM circle";
 		return jdbcTemplate.query(sql, new CircleMapper());
 	}
-
-	/*
-	public void insertCircle(Circle circle)
-	{
-		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (?, ?)";
-		jdbcTemplate.update(sql, circle.getId(), circle.getName());
-	}
-	*/
 
 	public void insertCircle(Circle circle)
 	{

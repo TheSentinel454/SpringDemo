@@ -33,7 +33,7 @@ public class LoggingAspect {
 		System.out.println("Arg: " + argument + " Exception: " + ex);
 	}
 
-	@Around("allGetters()")
+	@Around("@annotation(com.dci.aspectdemo.aspect.Loggable)")
 	public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint)
 	{
 		Object returnValue = null;
@@ -50,6 +50,9 @@ public class LoggingAspect {
 
 	@Pointcut("execution(* get*())")
 	public void allGetters(){}
+
+	//@Pointcut("execution(* com.dci.aspectdemo.service.*Service.*(..))")
+	//public void allServices(){}
 
 	//@Pointcut("execution(* com.dci.aspectdemo.model.Circle.*(..))")
 	@Pointcut("within(com.dci.aspectdemo.model.Circle)")

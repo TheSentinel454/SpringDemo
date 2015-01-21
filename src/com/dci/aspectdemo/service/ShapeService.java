@@ -1,5 +1,6 @@
 package com.dci.aspectdemo.service;
 
+import com.dci.aspectdemo.aspect.Loggable;
 import com.dci.aspectdemo.model.Circle;
 import com.dci.aspectdemo.model.Triangle;
 
@@ -18,6 +19,7 @@ public class ShapeService {
 		this.triangle = triangle;
 	}
 
+	@Loggable
 	public Circle getCircle() {
 		return circle;
 	}

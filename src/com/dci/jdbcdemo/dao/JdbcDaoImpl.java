@@ -24,9 +24,9 @@ public class JdbcDaoImpl {
 	}
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
-		//this.dataSource = dataSource;
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+
 	/*
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
@@ -34,7 +34,6 @@ public class JdbcDaoImpl {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	*/
 
 	public Circle getCircle(int circleId)
 	{
@@ -67,6 +66,7 @@ public class JdbcDaoImpl {
 			}
 		}
 	}
+	*/
 
 	public int getCircleCount()
 	{
@@ -90,6 +90,18 @@ public class JdbcDaoImpl {
 	{
 		String sql = "SELECT * FROM circle";
 		return jdbcTemplate.query(sql, new CircleMapper());
+	}
+
+	public void insertCircle(Circle circle)
+	{
+		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (?, ?)";
+		jdbcTemplate.update(sql, circle.getId(), circle.getName());
+	}
+
+	public void createTriangleTable()
+	{
+		String sql = "CREATE TABLE triangle (ID INTEGER, NAME VARCHAR(50))";
+		jdbcTemplate.execute(sql);
 	}
 
 	private static final class CircleMapper implements RowMapper<Circle> {

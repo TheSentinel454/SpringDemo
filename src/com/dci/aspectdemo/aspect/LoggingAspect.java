@@ -1,6 +1,7 @@
 package com.dci.aspectdemo.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 /**
@@ -30,6 +31,21 @@ public class LoggingAspect {
 	{
 		System.out.println("An exception has been thrown.");
 		System.out.println("Arg: " + argument + " Exception: " + ex);
+	}
+
+	@Around("allGetters()")
+	public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint)
+	{
+		Object returnValue = null;
+		try {
+			System.out.println("Before advice");
+			returnValue = proceedingJoinPoint.proceed();
+			System.out.println("After Returning");
+		} catch (Throwable throwable) {
+			System.out.println("After Throwing");
+		}
+		System.out.println("After Finally");
+		return returnValue;
 	}
 
 	@Pointcut("execution(* get*())")

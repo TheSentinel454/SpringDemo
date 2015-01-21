@@ -19,7 +19,7 @@
               <property name="name" value="Triangle name"/>
        </bean>
        <bean name="circle" class="com.dci.aspectdemo.model.Circle">
-              <!--<property name="name" value="Circle name"/>-->
+              <property name="name" value="Circle name"/>
        </bean>
 
        <bean name="shapeService" class="com.dci.aspectdemo.service.ShapeService" autowire="byName"/>

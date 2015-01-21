@@ -8,6 +8,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 public class SimpleJdbcDaoImpl extends SimpleJdbcDaoSupport {
 	public int getCircleCount()
 	{
-		return this.getSimpleJdbcTemplate().queryForObject("SELECT COUNT(*) FROM CIRCLE", Integer.class);
+		return this.getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM CIRCLE", Integer.class);
 	}
 }

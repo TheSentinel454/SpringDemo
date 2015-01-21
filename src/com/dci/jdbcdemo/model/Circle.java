@@ -1,9 +1,14 @@
 package com.dci.jdbcdemo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Created by ltornquist on 1/21/2015.
  */
+@Entity
 public class Circle {
+	@Id
 	private int id;
 	private String name;
 

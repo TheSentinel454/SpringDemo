@@ -21,64 +21,13 @@
               <property name="dataSource" ref="dataSource"/>
        </bean>
 
-       <!--
-       <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-              <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
-              <property name="url" value="jdbc:derby://localhost:1527/db;create=true"/>
-       </bean>
-       -->
-       <!--
-       <bean name="triangle" class="com.dci.aspectdemo.model.Triangle">
-              <property name="name" value="Triangle name"/>
-       </bean>
-       <bean name="circle" class="com.dci.aspectdemo.model.Circle">
-              <property name="name" value="Circle name"/>
-       </bean>
-
-       <bean name="shapeService" class="com.dci.aspectdemo.service.ShapeService" autowire="byName"/>
-
-       <bean name="loggingAspect" class="com.dci.aspectdemo.aspect.LoggingAspect"/>
-
-       <aop:aspectj-autoproxy/>
-       <aop:config>
-              <aop:aspect id="loggingAspect" ref="loggingAspect">
-                     <aop:pointcut id="allGetters" expression="execution(* get*())"/>
-                     <aop:around method="myAroundAdvice" pointcut-ref="allGetters"/>
-                     <aop:around method="myAroundAdvice" pointcut="execution(* get*())"/>
-              </aop:aspect>
-
-       </aop:config>
-
-       <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-              <property name="basenames">
-                     <list>
-                            <value>mymessages</value>
-                     </list>
+       <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="packagesToScan" value="com.dci.jdbcdemo.model"/>
+              <property name="hibernateProperties">
+                     <props>
+                            <prop key="dialect">org.hibernate.dialect.DerbyDialect</prop>
+                     </props>
               </property>
        </bean>
-
-       <bean id="triangle" class="com.dci.springdemo.Triangle">
-              <property name="pointA" ref="pointA"/>
-              <property name="pointB" ref="pointB"/>
-              <property name="pointC" ref="pointC"/>
-       </bean>
-
-       <bean id="pointA" class="com.dci.springdemo.Point">
-              <qualifier value="circleRelated"/>
-              <property name="x" value="0"/>
-              <property name="y" value="0"/>
-       </bean>
-       <bean id="pointB" class="com.dci.springdemo.Point">
-              <property name="x" value="-20"/>
-              <property name="y" value="0"/>
-       </bean>
-       <bean id="pointC" class="com.dci.springdemo.Point">
-              <property name="x" value="0"/>
-              <property name="y" value="20"/>
-       </bean>
-
-       <bean id="circle" class="com.dci.springdemo.Circle">
-              <property name="center" ref="pointA"/>
-       </bean>
-       -->
 </beans>

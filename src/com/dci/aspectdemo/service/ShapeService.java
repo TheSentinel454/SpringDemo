@@ -19,8 +19,8 @@ public class ShapeService {
 		this.triangle = triangle;
 	}
 
-	@Loggable
 	public Circle getCircle() {
+		System.out.println("Circle getter called");
 		return circle;
 	}
 

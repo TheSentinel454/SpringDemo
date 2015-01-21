@@ -8,7 +8,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
  */
 public class LoggingAspect {
 
-	//@Around("allGetters()")
 	public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint)
 	{
 		Object returnValue = null;
@@ -23,6 +22,8 @@ public class LoggingAspect {
 		return returnValue;
 	}
 
-	//@Pointcut("execution(* get*())")
-	//public void allGetters(){}
+	public void loggingAdvice()
+	{
+		System.out.println("Logging from the advice!");
+	}
 }

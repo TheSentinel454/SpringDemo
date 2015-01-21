@@ -15,9 +15,7 @@ public class JdbcDemo {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 		JdbcDaoImpl dao = context.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
 
-		//dao.insertCircle(new Circle(3, "Third Circle"));
-		//System.out.println(dao.getAllCircles().size());
-
-		dao.createTriangleTable();
+		dao.insertCircle(new Circle(5, "Fifth Circle"));
+		System.out.println(dao.getAllCircles().size());
 	}
 }

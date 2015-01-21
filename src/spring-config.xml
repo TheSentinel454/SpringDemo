@@ -26,6 +26,15 @@
 
        <bean name="loggingAspect" class="com.dci.aspectdemo.aspect.LoggingAspect"/>
 
+       <aop:config>
+              <aop:aspect id="loggingAspect" ref="loggingAspect">
+                     <aop:pointcut id="allGetters" expression="execution(* get*())"/>
+                     <aop:around method="myAroundAdvice" pointcut-ref="allGetters"/>
+                     <!--<aop:around method="myAroundAdvice" pointcut="execution(* get*())"/>-->
+              </aop:aspect>
+
+       </aop:config>
+
        <!--
        <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
               <property name="basenames">

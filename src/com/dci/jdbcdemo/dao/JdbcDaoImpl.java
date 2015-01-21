@@ -1,23 +1,33 @@
 package com.dci.jdbcdemo.dao;
 
 import com.dci.jdbcdemo.model.Circle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 /**
  * Created by ltornquist on 1/21/2015.
  */
+@Component
 public class JdbcDaoImpl {
+	@Autowired
+	private DataSource dataSource;
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
 	public Circle getCircle(int circleId)
 	{
 		Connection conn = null;
-		String driver = "org.apache.derby.jdbc.ClientDriver";
 
 		try {
-			Class.forName(driver).newInstance();
-
-			conn = DriverManager.getConnection("jdbc:derby://localhost:1527/db");
+			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM circle WHERE id = ?");
 			ps.setInt(1, circleId);
 

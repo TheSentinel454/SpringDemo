@@ -2,19 +2,27 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd">
-
-       <aop:aspectj-autoproxy/>
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
        <context:annotation-config/>
-       <context:component-scan base-package="com.dci.springdemo"/>
+       <context:component-scan base-package="com.dci.jdbcdemo"/>
 
+       <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+              <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
+              <property name="url" value="jdbc:derby://localhost:1527/db;create=true"/>
+              <property name="initialSize" value="2"/>
+              <property name="maxTotal" value="5"/>
+       </bean>
+       <!--
+       <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+              <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
+              <property name="url" value="jdbc:derby://localhost:1527/db;create=true"/>
+       </bean>
+       -->
+       <!--
        <bean name="triangle" class="com.dci.aspectdemo.model.Triangle">
               <property name="name" value="Triangle name"/>
        </bean>
@@ -26,16 +34,16 @@
 
        <bean name="loggingAspect" class="com.dci.aspectdemo.aspect.LoggingAspect"/>
 
+       <aop:aspectj-autoproxy/>
        <aop:config>
               <aop:aspect id="loggingAspect" ref="loggingAspect">
                      <aop:pointcut id="allGetters" expression="execution(* get*())"/>
                      <aop:around method="myAroundAdvice" pointcut-ref="allGetters"/>
-                     <!--<aop:around method="myAroundAdvice" pointcut="execution(* get*())"/>-->
+                     <aop:around method="myAroundAdvice" pointcut="execution(* get*())"/>
               </aop:aspect>
 
        </aop:config>
 
-       <!--
        <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
               <property name="basenames">
                      <list>
